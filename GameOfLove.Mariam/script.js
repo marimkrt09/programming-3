@@ -104,6 +104,7 @@ let waterArr = []
 let fireArr = []
 
 function setup() {
+        console.log("Hello world");
         frameRate(5);
 
         createCanvas(matrix[0].length * side, matrix.length * side);

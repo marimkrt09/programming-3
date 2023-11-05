@@ -26,7 +26,7 @@ function matrixGenerator(matrixSize, grassCount,grassEaterCount,predatorCount,Ca
                 if(matrix[y][x] == 0){
                         matrix[y][x] = 2
                 }
-                
+                        
         }
 
         for(let i = 0;i < predatorCount;i++){
@@ -104,7 +104,7 @@ let waterArr = []
 let fireArr = []
 
 function setup() {
-        console.log("Hello world");
+       
         frameRate(5);
 
         createCanvas(matrix[0].length * side, matrix.length * side);
@@ -227,3 +227,8 @@ function draw() {
           }
 }
 
+// let erexa1 = new Child("Hayk",14,"male")
+// console.log(erexa1.name);
+
+// erexa1.walk()
+// console.log(erexa1.beautiful);

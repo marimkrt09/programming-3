@@ -63,7 +63,7 @@ class Fire{
            
             for (var i in waterArr) {
                 if (newX == waterArr[i].x && newY == waterArr[i].y) {
-                    console.log("fire eat ----- >>>>");
+                   
                    waterArr.splice(i, 1);
                     break;
                 }

@@ -68,7 +68,7 @@ class Water {
 
             for (var i in fireArr) {
                 if (newX == fireArr[i].x && newY == fireArr[i].y) {
-                    console.log("water fire---->>>>> 000000")
+                    
 
                     fireArr.splice(i, 1);
                     break;
@@ -76,7 +76,7 @@ class Water {
             }
             for (var i in CatArr) {
                 if (newX == CatArr[i].x && newY == CatArr[i].y) {
-                    console.log("water eat---->>>>> 9999")
+                 
 
                     CatArr.splice(i, 1);
                     break;

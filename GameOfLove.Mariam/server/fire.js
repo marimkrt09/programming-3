@@ -1,14 +1,11 @@
-class Cat{
+let LivingCreature = require('./LivingCreature')
+module.exports =class Fire extends LivingCreature{
     constructor(x,y){
-        this.x = x
-        this.y = y
-        this.energy = 22
-        this.directions = [
+        super(x,y)
+        this.energy = 30
+        
 
-        ]
     }
-
-
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -21,7 +18,6 @@ class Cat{
             [this.x + 1, this.y + 1]
         ];
     }
-    
     chooseCell(character) {
         this.getNewCoordinates();
         var found = [];
@@ -40,12 +36,12 @@ class Cat{
     move() {
         this.energy--
         let emptyCells = this.chooseCell(0)
-        let newCell = random(emptyCells)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
             let newX = newCell[0]
             let newY = newCell[1]
             matrix[this.y][this.x] = 0
-            matrix[newY][newX] = 4
+            matrix[newY][newX] = 8
             this.x = newX
             this.y = newY
         }
@@ -54,26 +50,27 @@ class Cat{
             this.die()
         }
     }
-
     eat() {
-        let foods = this.chooseCell(5)
-        let food = random(foods)
+        let foods = this.chooseCell(7)
+        let food = foods[Math.floor(Math.random() * foods.length)]
         if (food) {
             this.energy++;
-    
-            matrix[this.y][this.x] = 0
+
             let newX = food[0]
             let newY = food[1]
-            matrix[newY][newX] = 4
-            this.x = newX
-            this.y = newY
-            for (let i in mouseArr) {
-                if (newX == mouseArr[i].x && newY == mouseArr[i].y) {
-                    mouseArr.splice(i, 1);
+            matrix[this.y][this.x] = 0
+            matrix[newY][newX] = 8
+           
+            for (var i in waterArr) {
+                if (newX == waterArr[i].x && newY == waterArr[i].y) {
+                    console.log("fire eat ----- >>>>");
+                   waterArr.splice(i, 1);
                     break;
                 }
             }
-           
+
+            this.x = newX
+            this.y = newY
             if (this.energy >= 32) {
                 this.mul()
             }
@@ -84,27 +81,26 @@ class Cat{
     }
     mul() {
         let emptyCell = this.chooseCell(0)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell ) {
             let newX = newCell[0]
             let newY = newCell[1]
 
-            matrix[newY][newX] = 4
+            matrix[newY][newX] = 8
 
-            let cat = new Cat(newX, newY)
+            let fire = new Fire(newX, newY)
 
-            CatArr.push(cat)
+           fireArr.push(fire)
 
 
         }
     }
-
     die() {
         matrix[this.y][this.x] = 0;
-        for (var i in CatArr) {
-            if (this.x == CatArr[i].x && this.y == CatArr[i].y) {
-                CatArr.splice(i, 1);
+        for (var i in fireArr) {
+            if (this.x == fireArr[i].x && this.y == fireArr[i].y) {
+               fireArr.splice(i, 1);
                 break;
             }
         }

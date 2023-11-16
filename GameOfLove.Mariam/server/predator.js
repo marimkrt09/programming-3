@@ -1,11 +1,9 @@
-class Predator{
+let LivingCreature = require('./LivingCreature')
+module.exports =class Predator extends LivingCreature{
     constructor(x,y){
-        this.x = x
-        this.y = y
+      super(x,y)
         this.energy = 10
-        this.directions = [
-
-        ]
+       
 
 
     }
@@ -24,7 +22,7 @@ class Predator{
 
 chooseCell(char1,char2,char3,) {
     this.getNewCoordinates();
-    var found = [];
+   let found = [];
     for (var i in this.directions) {
         var x = this.directions[i][0];
         var y = this.directions[i][1];
@@ -50,7 +48,7 @@ chooseCell(char1,char2,char3,) {
 move() {
     this.energy--
     let emptyCells = this.chooseCell(0)
-    let newCell = random(emptyCells)
+    let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
     if (newCell) {
         let newX = newCell[0]
         let newY = newCell[1]
@@ -66,7 +64,7 @@ move() {
 }
 mul() {
     let emptyCell = this.chooseCell(0)
-    let newCell = random(emptyCell)
+    let newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)]
 
     if (newCell ) {
         let newX = newCell[0]
@@ -83,7 +81,7 @@ mul() {
 }
 eat() {
     let foods = this.chooseCell(1,2,4,5)
-    let food = random(foods)
+    let food =foods[Math.floor(Math.random() * foods.length)]
     if (food) {
         this.energy++;
 

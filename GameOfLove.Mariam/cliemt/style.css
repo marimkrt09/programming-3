@@ -1,0 +1,26 @@
+/* body {background-color: rgb(93, 56, 204);} */
+
+body{
+    background: #36a5b4;
+    margin: 100px;
+    padding: 0;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    display: flex;
+
+  
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  

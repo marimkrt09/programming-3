@@ -1,18 +1,18 @@
-class Dog{
+let LivingCreature = require('./LivingCreature')
+module.exports =class Dog extends LivingCreature{
     constructor(x,y){
-        this.x = x
-        this.y = y
+       super(x,y)
         this.energy = 20
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        // this.directions = [
+        //     [this.x - 1, this.y - 1],
+        //     [this.x, this.y - 1],
+        //     [this.x + 1, this.y - 1],
+        //     [this.x - 1, this.y],
+        //     [this.x + 1, this.y],
+        //     [this.x - 1, this.y + 1],
+        //     [this.x, this.y + 1],
+        //     [this.x + 1, this.y + 1]
+        // ];
 
     }
     // getNewCoordinates() {
@@ -47,7 +47,7 @@ class Dog{
     move() {
         this.energy--
         let emptyCells = this.chooseCell(0)
-        let newCell = random(emptyCells)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
             let newX = newCell[0]
             let newY = newCell[1]
@@ -91,7 +91,7 @@ class Dog{
     // }
     protect(){
         let mouses = this.chooseCell(5)
-        let mouse = random(mouses)
+        let mouse = mouses[Math.floor(Math.random() * mouses.length)]
 
         if(mouse){
             
@@ -108,7 +108,7 @@ class Dog{
     }
     mul() {
         let emptyCell = this.chooseCell(0)
-        let newCell = random(emptyCell)
+        let newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)]
 
         if (newCell ) {
             let newX = newCell[0]

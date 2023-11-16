@@ -1,18 +1,9 @@
-class Water {
+let LivingCreature = require('./LivingCreature')
+module.exports =class Water extends  LivingCreature {
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        super(x,y)
         this.energy = 7;
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        
 
     }
 
@@ -40,7 +31,7 @@ class Water {
         this.energy--
 
         let emptyCells = this.chooseCell(0)
-        let newCell = random(emptyCells)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
             let newX = newCell[0]
             let newY = newCell[1]
@@ -57,7 +48,7 @@ class Water {
 
     eat() {
         let foods = this.chooseCell(8, 4)
-        let food = random(foods)
+        let food =foods[Math.floor(Math.random() * foods.length)]
         if (food) {
 
             this.energy++;
@@ -68,7 +59,7 @@ class Water {
 
             for (var i in fireArr) {
                 if (newX == fireArr[i].x && newY == fireArr[i].y) {
-                    
+                    console.log("water fire---->>>>> 000000")
 
                     fireArr.splice(i, 1);
                     break;
@@ -76,7 +67,7 @@ class Water {
             }
             for (var i in CatArr) {
                 if (newX == CatArr[i].x && newY == CatArr[i].y) {
-                 
+                    console.log("water eat---->>>>> 9999")
 
                     CatArr.splice(i, 1);
                     break;
@@ -98,7 +89,7 @@ class Water {
     }
     mul() {
         let emptyCell = this.chooseCell(0)
-        let newCell = random(emptyCell)
+        let newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)]
 
         if (newCell) {
             let newX = newCell[0]

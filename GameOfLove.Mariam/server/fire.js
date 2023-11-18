@@ -1,4 +1,4 @@
-let LivingCreature = require('./LivingCreature')
+let LivingCreature = require("./livingcreature")
 module.exports =class Fire extends LivingCreature{
     constructor(x,y){
         super(x,y)
@@ -81,7 +81,7 @@ module.exports =class Fire extends LivingCreature{
     }
     mul() {
         let emptyCell = this.chooseCell(0)
-        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+        let newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)]
 
         if (newCell ) {
             let newX = newCell[0]

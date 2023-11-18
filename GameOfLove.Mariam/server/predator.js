@@ -1,4 +1,4 @@
-let LivingCreature = require('./LivingCreature')
+let LivingCreature = require('./livingCreature')
 module.exports =class Predator extends LivingCreature{
     constructor(x,y){
       super(x,y)
@@ -91,25 +91,25 @@ eat() {
         matrix[newY][newX] = 3
         this.x = newX
         this.y = newY
-        for (var i in grassArray) {
-            if (newX == grassArray[i].x && newY == grassArray[i].y) {
-                grassArray.splice(i, 1);
+        for (let i in grassArr) {
+            if (newX == grassArr[i].x && newY == grassArr[i].y) {
+                grassArr.splice(i, 1);
                 break;
             }
         }
-        for (var i in grassEaterArr) {
+        for (let i in grassEaterArr) {
             if (newX == grassEaterArr[i].x && newY == grassEaterArr[i].y) {
                 grassEaterArr.splice(i, 1);
                 break;
             }
         }
-        for (var i in CatArr) {
+        for (let i in CatArr) {
             if (newX == CatArr[i].x && newY == CatArr[i].y) {
                CatArr.splice(i, 1);
                 break;
             }
         }
-        for (var i in mouseArr) {
+        for (let i in mouseArr) {
             if (newX == mouseArr[i].x && newY == mouseArr[i].y) {
                mouseArr.splice(i, 1);
                 break;

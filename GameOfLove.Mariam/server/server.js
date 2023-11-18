@@ -25,7 +25,6 @@ function matrixGenerator(matrixSize, grassCount, grassEaterCount, predatorCount,
     for (let i = 0; i < grassCount; i++) {
         let x = Math.floor(Math.random() * matrixSize);
         let y = Math.floor(Math.random() * matrixSize);
-
         if (matrix[y][x] == 0) {
             matrix[y][x] = 1
 
@@ -40,6 +39,7 @@ function matrixGenerator(matrixSize, grassCount, grassEaterCount, predatorCount,
         let y = Math.floor(Math.random() * matrixSize);
         if (matrix[y][x] == 0) {
             matrix[y][x] = 2
+            console.log(matrix);
         }
 
     }
@@ -106,35 +106,36 @@ function matrixGenerator(matrixSize, grassCount, grassEaterCount, predatorCount,
     return matrix;
 }
 
-let matrix = matrixGenerator(40, 30, 20, 10, 28, 15, 50, 50);
+matrix = matrixGenerator(40, 30, 20, 10, 28, 15, 50, 50);
 
 io.sockets.emit('send matrix', matrix)
-let grassArr = [];
-var grassEaterArr = [];
-let predatorArr = []
-let catArr = []
-let mouseArr = []
-let dogArr = []
-let waterArr = []
-let fireArr = []
+grassArr = [];
+grassEaterArr = [];
+predatorArr = []
+CatArr = []
+mouseArr = []
+dogArr = []
+waterArr = []
+fireArr = []
 
-let Grass = require("./grass")
-let Grasseater = require("./grassEater")
-let Predator = require("./predator")
-let Dog = require("./dog")
-let Cat = require("./cat")
-let Mouse = require("./mouse")
-let Water = require("./water")
-let Fire = require("./fire")
+Grass = require("./grass")
+GrassEater = require("./grassEater")
+Predator = require("./predator")
+Dog = require("./dog")
+Cat = require("./cat")
+Mouse = require("./mouse")
+Water = require("./water")
+Fire = require("./fire")
 
 function createObject(matrix) {
+
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
                 var gr = new Grass(x, y,);
                 grassArr.push(gr)
             }
-            else if (matrix[y][x] ==2 ) {
+            else if (matrix[y][x] == 2) {
                 let grEater = new GrassEater(x, y,);
                 grassEaterArr.push(grEater)
 
@@ -146,30 +147,30 @@ function createObject(matrix) {
 
             } else if (matrix[y][x] = 4) {
                 let cat = new Cat(x, y,)
-               catArr.push(cat)
-            }else if(matrix[y][x] = 5){
-                let mous = new Mouse(x,y)
+                CatArr.push(cat)
+            } else if (matrix[y][x] = 5) {
+                let mous = new Mouse(x, y)
                 mouseArr.push(mous)
 
-                
 
-            }else if(matrix[y][x] = 6){
-                let dog = new Dog(x,y)
+
+            } else if (matrix[y][x] = 6) {
+                let dog = new Dog(x, y)
                 dogArr.push(dog)
 
-                
 
-            }else if(matrix[y][x] = 7){
-                let wat = new Water(x,y)
+
+            } else if (matrix[y][x] = 7) {
+                let wat = new Water(x, y)
                 waterArr.push(wat)
 
-                
 
-            }else if(matrix[y][x] = 8){
-                let fire = new Fire(x,y)
+
+            } else if (matrix[y][x] = 8) {
+                let fire = new Fire(x, y)
                 fireArr.push(fire)
 
-                
+
 
             }
         }
@@ -181,40 +182,45 @@ function createObject(matrix) {
 }
 
 function game() {
-   
-for (let i in grassEaterArr) {
+
+    for (let i in grassArr) {
+        grassArr[i].mul()
+
+    }
+
+    for (let i in grassEaterArr) {
         grassEaterArr[i].eat();
-       
 
-}
 
-for(let i in predatorArr){
+    }
+
+    for (let i in predatorArr) {
         predatorArr[i].eat()
 
-}
+    }
 
-for(let i in CatArr){
-        CatArr[i].eat()
+    for (let i in CatArr) {
+        catArr[i].eat()
 
-}
+    }
 
-for(let i in mouseArr){
-       mouseArr[i].mul()
+    for (let i in mouseArr) {
+        mouseArr[i].mul()
 
-}
+    }
 
-for(let i in dogArr){
+    for (let i in dogArr) {
         dogArr[i].protect()
 
- }
- for(let i in waterArr){
-       waterArr[i].eat()
+    }
+    for (let i in waterArr) {
+        waterArr[i].eat()
 
- }
- for(let i in fireArr){
-       fireArr[i].eat()
+    }
+    for (let i in fireArr) {
+        fireArr[i].eat()
 
-  }
+    }
 
     io.sockets.emit("send matrix", matrix);
 }

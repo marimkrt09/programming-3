@@ -1,4 +1,4 @@
-let LivingCreature = require("LivingCreature")
+let LivingCreature = require("./livingcreature")
 
 module.exports = class Grass extends LivingCreature{
     
